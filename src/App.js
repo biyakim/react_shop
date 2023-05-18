@@ -8,11 +8,15 @@ import bg from './img/bg1.png';
 import shoes01 from './img/shoes01.png'
 import shoes02 from './img/shoes02.png'
 import shoes03 from './img/shoes03.png'
+// import {b,c} from './Data.js'
+import data from './Data.js'
+import { useState } from 'react';
 
 function App() {
+  let [shoes] = useState(data)
   return (
     <div className="App">
-        {/* <Button variant="success">Success</Button> */}
+        {/* {b}{c} */}
         <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">ShoesShop</Navbar.Brand>
@@ -27,21 +31,24 @@ function App() {
       <div className='main-bg' style={{backgroundImage : 'url('+bg+')'}}></div>
       <div className='container'>
         <div className='row'>
-          <div className='col-md-4'>
+          {/* <div className='col-md-4'>
             <img src={shoes01}/>
-            <h4>상품명</h4>
-            <p>상품설명</p>  
+            <h4>{shoes[0].title}</h4>
+            <p>{shoes[0].content}</p>  
           </div>
           <div className='col-md-4'>
             <img src={shoes02}/>
-            <h4>상품명</h4>
-            <p>상품설명</p> 
+            <h4>{shoes[1].title}</h4>
+            <p>{shoes[1].content}</p> 
           </div>
           <div className='col-md-4'>
             <img src={shoes03}/>
-            <h4>상품명</h4>
-            <p>상품설명</p> 
-          </div>
+            <h4>{shoes[2].title}</h4>
+            <p>{shoes[2].content}</p> 
+          </div> */}
+          <Card shoes={shoes[0]}></Card>
+          <Card shoes={shoes[1]}></Card>
+          <Card shoes={shoes[2]}></Card>
         </div>
       </div>
     </div>
@@ -49,3 +56,13 @@ function App() {
 }
 
 export default App;
+
+function Card(props){
+  return (
+    <div className='col-md-4'>
+            <img src={shoes01}/>
+            <h4>{props.shoes.title}</h4>
+            <p>{props.shoes.content}</p>  
+          </div>
+  )
+}
