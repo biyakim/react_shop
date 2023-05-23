@@ -11,11 +11,18 @@ import shoes03 from './img/shoes03.png'
 // import {b,c} from './Data.js'
 import data from './Data.js'
 import { useState } from 'react';
+import {Routes, Route, Link} from 'react-router-dom';
 
 function App() {
   let [shoes] = useState(data)
+  let [images] = useState([shoes01, shoes02, shoes03])
   return (
     <div className="App">
+      <Routes>
+        <Route path=".detail" element={<div>detail페이지이니다</div>}/>
+        <Route path='/about' element={<div>about페이지입니다</div>} />
+        <Route/>
+      </Routes>
         {/* {b}{c} */}
         <Navbar bg="dark" variant="dark">
         <Container>
@@ -46,9 +53,13 @@ function App() {
             <h4>{shoes[2].title}</h4>
             <p>{shoes[2].content}</p> 
           </div> */}
-          <Card shoes={shoes[0]}></Card>
-          <Card shoes={shoes[1]}></Card>
-          <Card shoes={shoes[2]}></Card>
+            {/* <Card shoes={shoes[1]} images={shoes[1]}></Card>
+            <Card shoes={shoes[2]} images={shoes[2]}></Card> */}
+          {shoes.map((a,i) =>{
+            return(
+              <Card shoes={shoes[i]} images={images[i]}></Card>
+            )
+          })}
         </div>
       </div>
     </div>
@@ -60,7 +71,7 @@ export default App;
 function Card(props){
   return (
     <div className='col-md-4'>
-            <img src={shoes01}/>
+            <img src={props.images}/>
             <h4>{props.shoes.title}</h4>
             <p>{props.shoes.content}</p>  
           </div>

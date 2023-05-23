@@ -1,0 +1,85 @@
+
+import {useState} from "react"
+import {Navbar,Container,Nav,Button} from 'react-bootstrap';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import bg from './img/bg1.png';
+import shoes01 from './img/shoes01_.png';
+import shoes02 from './img/shoes02_.png';
+import shoes03 from './img/shoes03_.png';
+// import a from './data.js';
+// import {b, c} from './data.js';
+import data from './data.js';
+
+function App() {
+  let [shoes] = useState(data);
+  let [images] = useState([shoes01, shoes02, shoes03]);
+  return (
+    <div className="App">
+      {/* {a} */}
+      {/* {b}{c} */}
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">ShoesShop</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <div className="main-bg" style={{backgroundImage:'url('+ bg +')'}}></div>
+      {/*<div className="main-bg" style={{backgroundImage:'url(bg)'}}></div>*/}
+      <div className = "container">
+        <div className = "row">
+         <Card shoes={shoes[0]} images={images[0]}></Card>
+         <Card shoes={shoes[1]} images={images[1]}></Card>
+         <Card shoes={shoes[2]} images={images[2]}></Card>
+        </div> 
+      </div>
+     </div>
+  ); 
+}
+
+export default App;
+
+function Card(props){
+  return (
+    <div className = "col-md-4">
+      <img src={props.images} alt='에어'/>
+      <h4>{props.shoes.title}</h4>
+      <p>{props.shoes.content}</p>
+    </div>
+  )
+}
+///////////////////////////////////////////
+data.ja
+// let a = 10;
+// let b = 100; 
+// let c = 1000; 
+// export default a; 
+// export {b,c}
+
+let data =  [
+    {
+      id : 0,
+      title : "White and Black",
+      content : "Born in France",
+      price : 120000
+    },
+    {
+      id : 1,
+      title : "Red Knit",
+      content : "Born in Seoul",
+      price : 110000
+    },
+    {
+      id : 2,
+      title : "Grey Yordan",
+      content : "Born in the States",
+      price : 130000
+    }
+  ] 
+  
+  export default data;
